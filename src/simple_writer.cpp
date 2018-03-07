@@ -48,6 +48,7 @@ int main(int argc, char* argv[])
     // also opened (by another process or thread)
     fd = open(fifo_path, O_WRONLY);
     if (fd == -1) {
+        unlink(fifo_path); // Cleanup of FIFO special file
         std::cerr << "Cannot open fifo file at: " << fifo_path << std::endl;
         return EXIT_FAILURE;
     }
